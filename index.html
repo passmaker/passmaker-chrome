@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="passmaker" ng-controller="PassMakerCtrl">
+  <head>
+    <title ng-bind="pageTitle + ' | PassMaker'">PassMaker</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- font awesome from BootstrapCDN -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/passmaker-0.1.0.css" />
+
+    <!-- compiled JavaScript -->
+    <script type="text/javascript" src="vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="src/app/app.js"></script>
+    <script type="text/javascript" src="src/app/configuration/configuration.js"></script>
+    <script type="text/javascript" src="src/app/generator/generator.js"></script>
+    <script type="text/javascript" src="src/common/gapi/google.js"></script>
+    <script type="text/javascript" src="src/common/jshashes/hashes.js"></script>
+    <script type="text/javascript" src="src/common/passwordmaker/passwordmaker.js"></script>
+    <script type="text/javascript" src="templates-common.js"></script>
+    <script type="text/javascript" src="templates-app.js"></script>
+
+    <script src="https://apis.google.com/js/client.js"></script>
+  </head>
+  <body>
+    <div id="root-wrapper">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button ng-init="menuCollapsed = true" ng-click="menuCollapsed = ! menuCollapsed" type="button" class="navbar-toggle">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand">
+              PassMaker
+            </div>
+          </div>
+          <div collapse="menuCollapsed" class="collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+              <li ui-sref-active="active">
+                <a href ui-sref="generator">
+                  <i class="fa fa-key"></i>
+                  Generator
+                </a>
+              </li>
+              <li ui-sref-active="active">
+                <a href ui-sref="configuration">
+                  <i class="fa fa-gears"></i>
+                  Configuration
+                </a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-if="!ready">
+                <a href ng-click="login()">
+                  <i class="fa fa-sign-in"></i>
+                  Login
+                </a>
+              </li>
+              <li ng-if="ready" class="disabled">
+                <a>
+                  <i class="fa fa-cloud"></i>
+                  Logged in
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div id="content-wrapper" class="container" ui-view></div>
+    </div>
+
+    <footer id="footer">
+      <div class="container">
+        <p>
+          PassMaker version <span class="version">0.1.0</span>
+        </p>
+        <p>
+          <a href="https://github.com/passmaker/passmaker.github.io"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Audit source code running this page</a>
+        </p>
+      </div>
+      <a href="https://github.com/passmaker/passmaker-online" class="hidden-xs">
+        <img style="position: fixed; top: 0; right: 0; margin-top: 50px; border: 0; z-index: 9999;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
+      </a>
+    </footer>
+  </body>
+</html>
